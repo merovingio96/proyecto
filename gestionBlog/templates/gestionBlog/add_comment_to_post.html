@@ -1,0 +1,9 @@
+{% extends 'gestionBlog/base.html' %}
+
+{% block content %}
+    <h1>Nuevo comentario</h1>
+    <form method="POST" class="comment-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Mandar comentario</button>
+    </form>
+{% endblock %}

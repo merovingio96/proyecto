@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>The Wandering Messenger</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/gestionBlog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1><a href="/">The Wandering Messenger</a></h1>
+            <p>Blog destinado a la divulgación de noticias de actualidad</p>
+        </div>
+        <div class="content container">
+            {% if user.is_authenticated %}
+                <p>Bienvenido al blog, <b><i>{{ user.username }}</i></b>.</p>
+                <p>Logout <a href="{% url 'django.contrib.auth.views.logout' %}" class="content-container"><span class="glyphicon glyphicon-log-out"></span></a>
+                Añadir entrada<a href="{% url 'gestionBlog.views.add_post' %}" class="content-container"><span class="glyphicon glyphicon-plus"></span></a></p>
+            {% else %}
+                <p>Te damos la bienvenida, <b><i>Invitado</i></b>. Por favor, logeate.</p>
+                <p>Login <a href="{% url 'django.contrib.auth.views.login' %}" class="content-container"><span class="glyphicon glyphicon-log-in"></span></a></p>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

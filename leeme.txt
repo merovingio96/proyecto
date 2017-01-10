@@ -1,0 +1,39 @@
+Autor: Abraham Godoy Sánchez
+Fecha: 5 de enero de 2017
+Última revisión: 9 de enero de 2017
+
+---Info previa---
+El proyecto se ha entregado con la base de datos ya creada y con algunos objetos introducidos. Queda a criterio del profesor de la asignatura añadir, modificar o eliminar objetos (si cree oportuno) para comprobar el funcionamiento del sistema.
+
+---Info acerca de usuarios---*
+En el sistema se han reconocido tres usuarios: Admin, staff, usuario.
+1. El Admin es el superusuario creado para manejar el proyecto desde el panel de administración. El Admin también puede interactuar con el sistema añadiendo nuevas entradas (post) o comentarios (comment), editándolas/os o eliminándolas/os.
+2. El staff es un usuario que tiene los permisos para poder añadir o borrar una entrada del blog (post) y añadir o borrar comentarios (comment).
+3. El usuario es un usuario normal que sólo puede añadir nuevas entradas y comentarios.
+4. user = staff, password = staff || user = usuario, password = usuario (y si se requiere para ver los permisos o añadir algún usuario: user = Admin, password = hola1234)
+
+*Si no se está logueado, el visitante aparecerá en la ventana de inicio como "Invitado", aunque este usuario realmente no está considerado dentro del grupo Users.
+
+---Info acerca de la implementación---*
+Para poder acceder a la gran mayoría de funcionalidades que ofrece el sistema, será necesario haber realizado un login previo.
+0. Para realizar el login se han usado las vistas y plantillas que ofrece Django.
+0.1. Si se intenta hacer login estando ya logueado, no surtirá efecto, volviendo a aparecer la página de login.
+0.2. Una vez se ha conseguido realizar la autentificación de manera satisfactoria, se redirige al "home" del blog y ahora sí aparece un mensaje de bienvenida al usuario logueado.
+0.2.1. Aparecerán dos nuevos botones: logout y añadir entrada.
+Las opciones que se podrán realizar:
+1. add_post: se añade una nueva entrada del blog.
+2. edit_post: se edita tanto el título como el cuerpo de la entrada elegida (aparece un botón de un lápiz para acceder a dicha opción).
+3. delete_post: se elimina el post escogido (aparece un botón de una papelera para acceder a dicha opción).
+3.1. Si se tienen los permisos indicados, una vez se pulse sobre el botón de la papelera nos aparecerá otra página en la que se nos pregunta de si realmente estamos seguros de querer eliminar el post.
+4. Si se hace click sobre el título de una entrada se nos redirige hacia otra que muestra en detalle la entrada.
+4.1. Se deberá estar sobre la paǵina del detalle de una entrada para poder editarla o borrarla.
+5. Las entradas del blog se han ordenado cronológicamente desde la más reciente a la más antigua.
+6. Si se hace click sobre la cabecera que contiene el título del blog, se nos redirige al home (listado de todas las entradas del blog).
+7. Se ha habilitado la posibilidad de comentar las entradas, pudiendo ser eliminados los comentarios si así lo desean el usuario Admin o staff.
+7.1. Se puede mandar un comentario sin estar logueado, ya que se da la posibilidad de añadir un nick en el formulario de nuevo comentario.
+
+*Si se intenta acceder a algunas de las funcionalidades sin tener los permisos adecuados, se redirigirá a la página de login.
+
+---Info acerca del diseño---
+1. Se ha usado código CSS muy básico para darle algo de color y formato a la página.
+2. Se han usado botones Bootstrap para acceder a algunas funcionalidades.

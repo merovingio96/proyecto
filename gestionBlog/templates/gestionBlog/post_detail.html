@@ -1,0 +1,26 @@
+{% extends 'gestionBlog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        <h1>{{ post.title }}</h1>
+        <p align="justify">{{ post.text }}</p>
+        <p>Autor: {{ post.author }}</p>
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+                <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Editar entrada<span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-default" href="{% url 'delete_post' pk=post.pk %}">Borrar entrada<span class="glyphicon glyphicon-trash"></span></a>
+                <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Añadir comentario<span class="glyphicon glyphicon-comment"></span></a>
+            </div>
+        {% endif %}
+    </div>
+    {% for comment in post.comments.all %}
+        <div class="comment">
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.text }}</p>
+            <div class="date">
+                {{ comment.published_date }}
+            </div>
+            <a class="btn btn-default" href="{% url 'delete_comment_to_post' pk=comment.pk %}">Borrar comentario<span class="glyphicon glyphicon-remove"></span></a>
+    {% endfor %}
+{% endblock %}
